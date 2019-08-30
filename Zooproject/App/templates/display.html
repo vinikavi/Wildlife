@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <style>
+            body{
+                font-family: 'Times New Roman', Times, serif;
+                color:black;
+                padding-left: 20px;
+                padding-right: 20px;
+                margin: auto;
+                border-top: 10px;
+                border-bottom:10px;
+                background:white;
+                width: 1000px;
+                height: 1000px;
+                text-align: center;
+                cursor: pointer;
+
+            }
+            thead:hover{
+                border: 5px solid purple;
+            }
+            </style>
+    </head>
+    <body>
+            <table align="center" border="2">
+            <thead>
+                    <th>Name</th>
+                    <th>vehicle_no</th>
+                     <th>No_Of_Tickets</th>
+                    <th>Date</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Register_Id</th>
+                  <th>Country</th>
+                  <th>Cost</th>
+    
+    
+    
+            </thead>
+        {%for x in dtls%}
+      <tbody>
+                <td>{{x.name}}</td>
+                <td>{{x.vehicle_no}}</td>
+                <td>{{x.totaltickets}}</td>
+                <td>{{x.date}}</td>
+              <td>{{x.city}}</td>
+              <td>{{x.state}}</td>
+              <td>{{x.reg_id}}</td>
+              <td>{{x.country}}</td>
+              <td>{{x.cost}}</td>
+    </tbody>{%endfor%}
+      </table>
+        
+    </body>
+</html>

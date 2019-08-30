@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <style>
+body{
+    color:crimson;
+}
+h2{
+    color:yellowgreen;
+}
+/* table:hover{
+    border: 5px solid green;
+} */
+            #vini{
+                border-radius: 25px;
+                height: 50px;
+                width: 100px;
+                font-size: 1em;
+                font-style: initial;
+                color: orangered;
+                cursor: pointer;
+            }
+            table{
+                color:blue;
+                margin: auto;
+                font-style:bold;
+            }
+            td:hover{
+                border: 5px solid red;
+            }
+        
+            </style>
+    </head>
+
+    <body>
+        <h2><center>TICKET BOOKING PAGE</center></h2>
+        <form method="POST">
+            {%csrf_token%}
+    <table >
+            <center><b>{{form.as_p}}</b></center> 
+            
+    </table>  
+       <p><center><input id="vini" type='submit' value='Book'></center></p>
+     </form></body>
+    <table> 
+        <tr>
+        <center>
+         <td>{{ticket_id}}</td><br><br>
+         <td>{{Date}}</td><br><br>
+         <td>{{no_of_tickets}}</td>
+         <td>{{cost}}</td>
+        </center> 
+       </tr>
+    </table>
+ 
+</html>
