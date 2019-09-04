@@ -94,7 +94,7 @@ def booking(request):
             # msg2="Thank you for register"+"\n"+"it is auto generated mail"
             to=request.POST['email']
             send_mail(sub,msg,sender,[to])
-            return render(request,'booking.html',{'form':form,'total':total,'ticket_id':k.reg_id,'cost':cost,'adult':adult,'child':child,'Date':date})
+            return render(request,'ticket.html',{'form':form,'total':total,'ticket_id':k.reg_id,'cost':cost,'adult':adult,'child':child,'Date':date})
 
     return render(request,'booking.html',{'form':form})    
 def getdtls(request):
