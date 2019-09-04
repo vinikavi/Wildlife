@@ -28,7 +28,11 @@ def adminRegister(request):
             email=form.cleaned_data['email']
             mobileno=form.cleaned_data['mobileno']
             k=Admin(username=username,name=name,password=password,email=email,mobileno=mobileno)
-            k.save()
+            k.save() 
+            if not k:
+                return HttpResponse("Registration not completed")
+            else:
+                return redirect("/adminlog")
             # reg_id=request.session['id']=k.reg_id
             # sub="registration success"
             # sender='kavipy2@gmail.com'
@@ -66,16 +70,20 @@ def booking(request):
             age=form.cleaned_data['age']
             # cost=form.cleaned_data['cost']
             totaltickets=form.cleaned_data['totaltickets']
+            child=form.cleaned_data['child']
+            adult=form.cleaned_data['adult']
+
             cost=100*int(totaltickets)
             print(cost)
             country=form.cleaned_data['country']
             state=form.cleaned_data['state']
             date=form.cleaned_data['date']
             city=form.cleaned_data['city']
-            passport=form.cleaned_data['passport']
+            idproof=form.cleaned_data['idproof']
+            idno=form.cleaned_data['idno']
             vehicle_no=form.cleaned_data['vehicle_no']  
             # reg_id=form.cleaned_data['reg_id']
-            k=Booking(reg_id=reg_id,name=name,email=email,mobile=mobile,age=age,cost=cost,totaltickets=totaltickets,country=country,state=state,date=date,city=city,passport=passport,vehicle_no=vehicle_no)
+            k=Booking(reg_id=reg_id,name=name,email=email,mobile=mobile,age=age,cost=cost,adult=adult,child=child,totaltickets=totaltickets,country=country,state=state,date=date,city=city,idproof=idproof,idno=idno,vehicle_no=vehicle_no)
             k.save()
             reg_id=request.session['id']=k.reg_id
             sub="registration success"
