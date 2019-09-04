@@ -18,7 +18,7 @@ class Booking(models.Model):
   mobile=models.CharField(max_length=10)
   age=models.CharField(max_length=3)
   cost=models.CharField(max_length=5)
-  totaltickets=models.IntegerField()
+  total=models.IntegerField()
   child=models.IntegerField()
   adult=models.IntegerField()
   country=models.CharField(max_length=20)

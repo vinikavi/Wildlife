@@ -38,18 +38,19 @@
     
             </thead>
         {%for x in dtls%}
-      <tbody>
+        <tbody>
                 <td>{{x.name}}</td>
                 <td>{{x.vehicle_no}}</td>
-                <td>{{x.totaltickets}}</td>
+                <td>{{x.total}}</td>
                 <td>{{x.date}}</td>
               <td>{{x.city}}</td>
               <td>{{x.state}}</td>
               <td>{{x.reg_id}}</td>
               <td>{{x.country}}</td>
               <td>{{x.cost}}</td>
-    </tbody>{%endfor%}
-      </table>
+        </tbody>
+        {%endfor%}
+        </table>
         
     </body>
 </html>

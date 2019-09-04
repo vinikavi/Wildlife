@@ -3,6 +3,7 @@
         <style>
 body{
     color:crimson;
+    background-color:aqua;
 }
 h2{
     color:yellowgreen;
@@ -20,7 +21,7 @@ h2{
                 cursor: pointer;
             }
             table{
-                color:blue;
+                color:green;
                 margin: auto;
                 font-style:bold;
             }
@@ -41,15 +42,18 @@ h2{
     </table>  
        <p><center><input id="vini" type='submit' value='Book'></center></p>
      </form></body>
-    <table> 
-        <tr>
+    <table width="0"> 
+       
         <center>
-         <td>{{ticket_id}}</td><br><br>
-         <td>{{Date}}</td><br><br>
-         <td>{{no_of_tickets}}</td>
-         <td>{{cost}}</td>
+            <tr> <td><b>Ticket_ID:      {{ticket_id}}</b></td></tr><br><br>&nbsp;&nbsp;&nbsp;
+         <tr><td><b>DATE:       {{Date}}</b></td></tr><br><br>&nbsp;&nbsp;&nbsp;
+         <tr><td><b>NO_OF_ADULTS:       {{adult}}</b></td></tr><br><br>&nbsp;&nbsp;&nbsp;
+         <tr><td><b>NO_OF_CHILDS:       {{child}}</b></td></tr><br><br>&nbsp;&nbsp;&nbsp;
+        <tr><td><b>TOTAL_COST:      {{cost}}</b></td></tr>
+        <tr><td><b>TOTAL_TICKETS:      {{total}}</b></td></tr>
+
         </center> 
-       </tr>
+      
     </table>
  
 </html>

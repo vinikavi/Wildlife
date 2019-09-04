@@ -59,7 +59,7 @@ def booking(request):
     if request.method=='POST':
         form=TicketBooking(request.POST)
         if form.is_valid():
-            n='T_id:'
+            n=''
             for i in range(0,4):
                 n=n+str(randint(0,9))
             reg_id=n
@@ -69,11 +69,13 @@ def booking(request):
             mobile=form.cleaned_data['mobile']
             age=form.cleaned_data['age']
             # cost=form.cleaned_data['cost']
-            totaltickets=form.cleaned_data['totaltickets']
+            # totaltickets=form.cleaned_data['totaltickets']
             child=form.cleaned_data['child']
+            c=50*int(child)
             adult=form.cleaned_data['adult']
-
-            cost=100*int(totaltickets)
+            a=100*int(adult)
+            cost=c+a
+            total=int(child)+int(adult)
             print(cost)
             country=form.cleaned_data['country']
             state=form.cleaned_data['state']
@@ -83,7 +85,7 @@ def booking(request):
             idno=form.cleaned_data['idno']
             vehicle_no=form.cleaned_data['vehicle_no']  
             # reg_id=form.cleaned_data['reg_id']
-            k=Booking(reg_id=reg_id,name=name,email=email,mobile=mobile,age=age,cost=cost,adult=adult,child=child,totaltickets=totaltickets,country=country,state=state,date=date,city=city,idproof=idproof,idno=idno,vehicle_no=vehicle_no)
+            k=Booking(reg_id=reg_id,name=name,email=email,mobile=mobile,age=age,cost=cost,total=total,adult=adult,child=child,country=country,state=state,date=date,city=city,idproof=idproof,idno=idno,vehicle_no=vehicle_no)
             k.save()
             reg_id=request.session['id']=k.reg_id
             sub="registration success"
@@ -92,7 +94,7 @@ def booking(request):
             # msg2="Thank you for register"+"\n"+"it is auto generated mail"
             to=request.POST['email']
             send_mail(sub,msg,sender,[to])
-            return render(request,'booking.html',{'form':form,'ticket_id':k.reg_id,'cost':cost,'no_of_tickets': totaltickets,'Date':date})
+            return render(request,'booking.html',{'form':form,'total':total,'ticket_id':k.reg_id,'cost':cost,'adult':adult,'child':child,'Date':date})
 
     return render(request,'booking.html',{'form':form})    
 def getdtls(request):

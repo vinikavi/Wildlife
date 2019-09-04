@@ -27,5 +27,5 @@ class TicketBooking(forms.ModelForm):
     class Meta:
         model=Booking
         # fields='__all__ '
-        fields=['name','email','mobile','age','cost','totaltickets','child','adult','country','state','date','city','idproof','idno','vehicle_no']
-        exclude=['cost']
+        fields=['name','email','mobile','age','total','cost','child','adult','country','state','date','city','idproof','idno','vehicle_no']
+        exclude=['cost','total']
