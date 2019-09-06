@@ -12,6 +12,8 @@ def register(request):
     return render(request,'admin.html')
 def userreg(request):
     return render(request,'admin.html')
+def UserHome(request):
+    return render(request,'userhome.html')
 
 def adminRegister(request):
     form=AdminRegister()
@@ -46,13 +48,14 @@ def adminLogin(request):
     if request.method=='POST':
         form=Login(request.POST)
         if form.is_valid():
-            username=form.cleaned_data['username'] 
+            name=form.cleaned_data['name'] 
+            request.session['name']=name
             password =form.cleaned_data['password']
-            user=Admin.objects.filter(username=username,password=password)
+            user=Admin.objects.filter(name=name,password=password)
             if not user:
                 return HttpResponse("""login failed""")
             else:
-                return redirect("/booking")
+                return redirect("/userhome")
     return render(request,'login.html',{'form':form})
 def booking(request):
     form=TicketBooking()
@@ -68,6 +71,7 @@ def booking(request):
             email=form.cleaned_data['email']
             mobile=form.cleaned_data['mobile']
             age=form.cleaned_data['age']
+            parks_names=form.cleaned_data['parks_names']
             # cost=form.cleaned_data['cost']
             # totaltickets=form.cleaned_data['totaltickets']
             child=form.cleaned_data['child']
@@ -86,7 +90,7 @@ def booking(request):
             idno=form.cleaned_data['idno']
             vehicle_no=form.cleaned_data['vehicle_no']  
             # reg_id=form.cleaned_data['reg_id']
-            k=Booking(reg_id=reg_id,name=name,email=email,status=status,mobile=mobile,age=age,cost=cost,total=total,adult=adult,child=child,country=country,state=state,date=date,city=city,idproof=idproof,idno=idno,vehicle_no=vehicle_no)
+            k=Booking(reg_id=reg_id,name=name,email=email,status=status,mobile=mobile,age=age,parks_names=parks_names,cost=cost,total=total,adult=adult,child=child,country=country,state=state,date=date,city=city,idproof=idproof,idno=idno,vehicle_no=vehicle_no)
             k.save()
             reg_id=request.session['id']=k.reg_id
             sub="registration success"
@@ -95,11 +99,23 @@ def booking(request):
             # msg2="Thank you for register"+"\n"+"it is auto generated mail"
             to=request.POST['email']
             send_mail(sub,msg,sender,[to])
-            return render(request,'ticket.html',{'form':form,'status':status,'total':total,'ticket_id':k.reg_id,'cost':cost,'adult':adult,'child':child,'Date':date})
+            return render(request,'ticket.html',{'form':form,'status':status,'parks_names':parks_names,'total':total,'ticket_id':k.reg_id,'cost':cost,'adult':adult,'parks_names':parks_names,'child':child,'Date':date})
 
     return render(request,'booking.html',{'form':form})    
 def getdtls(request):
     # if request.method=='POST':
-    dtls=Booking.objects.all()
-    return render(request,'display.html',{'dtls':dtls})
+    name1=request.session['name']
+    # print(name1)
+    dbuser=Booking.objects.filter(name=name1)
+    if dbuser:
+        return render(request,'display.html',{'name':dbuser})
+    else:
+        return HttpResponse("previously ur not booking any ..... please Book A Ticket...")
+
+    # dtls=Booking.objects.all()
+    # return render(request,'display.html',{'dtls':dtls})
     # return render(request,'display.html')
+def alldetails(request):
+    all=Booking.objects.all()
+    # all.save()
+    return render(request,'details.html',{'all':all})

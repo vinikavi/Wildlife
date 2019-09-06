@@ -4,15 +4,15 @@
             body{
                 font-style: normal;
                 color:black;
-                padding-left: 20px;
-                padding-right: 20px;
+                /* padding-left: 20px; */
+                /* padding-right: 20px; */
                 margin: auto;
-                border-top: 10px;
-                border-bottom:10px;
+                /* border-top: 10px; */
+                /* border-bottom:10px; */
                 background:white;
-                width: 1000px;
-                height: 1000px;
-                font-size: 25px;
+                /* width: 1000px; */
+                /* height: 1000px; */
+                font-size: 20px;
                 text-align: center;
                 cursor: pointer;
 
@@ -43,12 +43,12 @@
               <th>Parks_Names</th>
 
             </thead>
-        {%for x in name%}
+        {%for x in all%}
         <tbody>
                 <td><center>{{x.name}}</center></td>
                 <td><center>{{x.reg_id}}</center></td>
                 <td><center>{{x.vehicle_no}}</center></td>
-                <td>{{x.date}}</td>
+                <td><center>{{x.date}}</center></td>
                 <td><center>{{x.country}}</center></td>
                 <td><center>{{x.state}}</center></td>
                 <td><center>{{x.city}}</center></td>

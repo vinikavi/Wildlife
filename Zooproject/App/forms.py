@@ -1,6 +1,8 @@
 from django import forms
 from django.core import validators
 from .models import Admin,User,Booking
+class DateInput(forms.DateInput):
+    input_type = 'date'
 class AdminRegister(forms.Form):
     name=forms.CharField()
     username=forms.CharField()
@@ -13,7 +15,7 @@ class AdminRegister(forms.Form):
            raise forms.ValidationError('password must contains atleast 8 characters')
         return inputname
 class Login(forms.Form):
-    username=forms.CharField()
+    name=forms.CharField()
     password=forms.CharField(widget=forms.PasswordInput)
 class UserRegister(forms.Form):
     name=forms.CharField()
@@ -27,5 +29,9 @@ class TicketBooking(forms.ModelForm):
     class Meta:
         model=Booking
         # fields='__all__ '
-        fields=['name','email','mobile','age','total','cost','child','status','adult','country','state','date','city','idproof','idno','vehicle_no']
+        fields=['name','email','mobile','age','total','parks_names','cost','child','status','adult','country','state','date','city','idproof','idno','vehicle_no']
+    
         exclude=['cost','total']
+        widgets = {
+            'date': DateInput(),
+            }
